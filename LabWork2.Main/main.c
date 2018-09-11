@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../LabWork.Lib/functions.h"
+#include "../LabWork2.Lib/functions.h"
 
 int main() {
 	int n;

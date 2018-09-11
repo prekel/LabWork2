@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 extern "C" {
-#include "../LabWork.Lib/functions.h"
+#include "../LabWork2.Lib/functions.h"
 }
 
 TEST(TestCaseName, SerialResistTest1) {

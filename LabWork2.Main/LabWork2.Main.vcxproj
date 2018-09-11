@@ -142,7 +142,7 @@
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LabWork.Lib\LabWork.Lib.vcxproj">
+    <ProjectReference Include="..\LabWork2.Lib\LabWork2.Lib.vcxproj">
       <Project>{035f902c-a242-48b8-8cb0-c689d5bfd76b}</Project>
     </ProjectReference>
   </ItemGroup>

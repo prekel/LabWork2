@@ -36,12 +36,12 @@
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LabWork.Lib\LabWork.Lib.vcxproj">
-      <Project>{035f902c-a242-48b8-8cb0-c689d5bfd76b}</Project>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\LabWork2.Lib\LabWork2.Lib.vcxproj">
+      <Project>{035f902c-a242-48b8-8cb0-c689d5bfd76b}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
