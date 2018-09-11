@@ -15,11 +15,11 @@ double parallel_resist(int n, const double a[]) {
 }
 
 int main() {
-    double resist[1000];
-    printf("N: ");
     int n;
+    printf("N: ");
     scanf("%d", &n);
     char string_number[100];
+    double resist[1000];
     for (int i = 0; i < n; i++) {
         while (1) {
             printf("R n%d: ", i + 1);
@@ -30,8 +30,8 @@ int main() {
         };
     }
 
-    printf("R serial:   %lf\n", serial_resist(n, resist));
-    printf("R parallel: %lf\n", parallel_resist(n, resist));
+    printf("R serial:   %15.6lf\n", serial_resist(n, resist));
+    printf("R parallel: %15.6lf\n", parallel_resist(n, resist));
     fflush(stdout);
 
     return 0;
