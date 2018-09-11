@@ -1,5 +1,11 @@
 #include <stdio.h>
 
+#ifdef _WIN32
+	int a = 1;
+#elif __linux__
+	int a = 2;
+#endif
+
 double serial_resist(int n, const double a[]) {
     double sum = 0;
     for (int i = 0; i < n; i++) sum += a[i];
