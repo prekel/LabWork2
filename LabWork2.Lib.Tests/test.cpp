@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
-extern "C" {
+//extern "C" {
 #include "../LabWork2.Lib/functions.h"
-}
+//}
 
 TEST(TestCaseName, SerialResistTest1) {
 	double d[3] = { 1, 2, 3 };
