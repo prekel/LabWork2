@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
 
-#set(PROJECT LabWork2.Lib)
 project(LabWork2.Lib)
 
 #set(CMAKE_C_STANDARD 11)
