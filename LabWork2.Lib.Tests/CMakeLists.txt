@@ -1,22 +1,20 @@
 cmake_minimum_required(VERSION 3.12)
 
-set(PROJECT LabWork2.Lib.Tests)
-project(${PROJECT})
+project(LabWork2.Lib.Tests)
 
-set(CMAKE_C_STANDARD 11)
+#set(CMAKE_C_STANDARD 11)
 
-include(GoogleTest)
+enable_testing()
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
 include_directories(../LabWork2.Lib)
 
 set(SOURCES test.cpp)
 
-add_executable(${PROJECT} ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES})
 
-enable_testing()
-gtest_add_tests(TARGET      ${PROJECT}
-        TEST_SUFFIX .noArgs
-        )
 
-#add_dependencies(${PROJECT} LabWork2.Lib)
-target_link_libraries(${PROJECT} gtest gtest_main)
-target_link_libraries(${PROJECT} LabWork2.Lib)
+add_test(Tests ${PROJECT_NAME})
+
+target_link_libraries(${PROJECT_NAME} gtest gtest_main gmock pthread)
+target_link_libraries(${PROJECT_NAME} LabWork2.Lib)
