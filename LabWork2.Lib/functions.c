@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 double serial_resist(int n, const double a[]) {
 	double sum = 0;
 	for (int i = 0; i < n; i++) sum += a[i];
@@ -10,4 +12,16 @@ double parallel_resist(int n, const double a[]) {
 	double sum = 0;
 	for (int i = 0; i < n; i++) sum += prod / a[i];
 	return prod / sum;
+}
+
+bool checkerN(int n)
+{
+	if (n <= 0) return false;
+	return true;
+}
+
+bool checkerResist(double n)
+{
+	if (n <= 0) return false;
+	return true;
 }

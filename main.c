@@ -3,18 +3,6 @@
 #include <stdbool.h>
 #include "../LabWork2.Lib/functions.h"
 
-bool checkerN(int n)
-{
-	if (n <= 0) return false;
-	return true;
-}
-
-bool checkerResist(double n)
-{
-	if (n <= 0) return false;
-	return true;
-}
-
 int cycle_input_int(char *output, bool(*checker)(int))
 {
 	int n;
