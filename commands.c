@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
+#include <malloc.h>
 #include "commands.h"
 #include "macro.h"
 
@@ -57,4 +58,9 @@ void help(char *cmd, int lang) {
 	if (find == false) {
 		printf("%s", cmd_not_found[lang]);
 	}
+}
+
+void setsize(struct resistarray *resist, int size) {
+	resist->n = size;
+	resist->values = (double *) malloc(size * sizeof(double));
 }
