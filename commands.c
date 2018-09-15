@@ -11,8 +11,8 @@ struct command commands[COMMANDS_COUNT] = {
 						"Without argument: Print all commands description\nWith argument (help <cmd_name>): Print detailed info about command]\n"}},
 
 		{"setsize",         {"Установка размера массива",        "Set array size"},
-				{"11",
-						"12"}},
+				{"Устанавливает размер массива, использование: setsize <array_size>\n",
+						"Sets size of array, usage: setsize <array_size>\n"}},
 
 		{"fillmanual",      {"Ввод значений вручную",            "Entering values manually"},
 				{"21",
@@ -30,9 +30,9 @@ struct command commands[COMMANDS_COUNT] = {
 				{"51",
 						"52"}},
 
-		{"switchlang",      {"Switch language to english",       "Переключить язык на русский"},
-				{"61",
-						"62"}},
+		{"switchlang",      {"Switch language to English",       "Переключить язык на русский"},
+				{"Переключает язык на английский\n",
+						"Switches language to Russian\n"}},
 
 		{"exit",            {"Выход из программы",               "Exiting the program"},
 				{"71",
