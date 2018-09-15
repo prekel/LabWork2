@@ -41,6 +41,8 @@ int input_line(char *str) {
 
 int lang = 0;
 
+struct resistarray resist;
+
 int main(int argc, char *argv[]) {
 	if (argc == 1 && strcmp(argv[0], "-en") == 0) lang = 1;
 
@@ -63,8 +65,12 @@ int main(int argc, char *argv[]) {
 			else help(split_command[1], lang);
 		}
 		// setsize
-		if (strcmp(string_command, commands[1].name) == 0) {
-
+		if (strcmp(split_command[0], commands[1].name) == 0) {
+			if (count == 1) continue;
+			int size;
+			int code = sscanf(split_command[1], "%d", &size);
+			if (code == 0 || !checkerN(size)) continue;
+			setsize(&resist, size);
 		}
 		// switchlang
 		if (strcmp(string_command, commands[6].name) == 0) {

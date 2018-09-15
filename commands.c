@@ -11,8 +11,8 @@ struct command commands[COMMANDS_COUNT] = {
 						"Without argument: Print all commands description\nWith argument (help <cmd_name>): Print detailed info about command]\n"}},
 
 		{"setsize",         {"Установка размера массива",        "Set array size"},
-				{"Устанавливает размер массива, использование: setsize <array_size>\n",
-						"Sets size of array, usage: setsize <array_size>\n"}},
+				{"Устанавливает размер массива, использование: setsize <array_size>\nДопустимы только натуральные числа\n",
+						"Sets size of array, usage: setsize <array_size>\nOnly natural numbers are allowed\n"}},
 
 		{"fillmanual",      {"Ввод значений вручную",            "Entering values manually"},
 				{"21",
