@@ -1,6 +1,7 @@
-#pragma once
+#ifndef COMMANDS_H
+#define COMMANDS_H
 
-#include "macro.h"
+#include "options.h"
 
 struct command {
 	char *name;
@@ -14,7 +15,9 @@ struct resistarray {
 	double *values;
 };
 
-void help_void(int lang);
-void help(char *cmd, int lang);
+void help_void();
+void help(char *cmd);
 
 void setsize(struct resistarray *resist, int size);
+
+#endif

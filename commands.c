@@ -3,12 +3,12 @@
 #include <string.h>
 #include <malloc.h>
 #include "commands.h"
-#include "macro.h"
+#include "options.h"
 
 struct command commands[COMMANDS_COUNT] = {
 		{"help",            {"Вывод справки",                    "Print help"},
 				{"Без аргумента: Выводит описание всех команд\nС аргументом (help <имя_команды>): Выводит подробное описание команды\n",
-						"Without argument: Print all commands description\nWith argument (help <cmd_name>): Print detailed info about command]\n"}},
+						"Without argument: Print all commands description\nWith argument (help <cmd_name>): Print detailed info about command\n"}},
 
 		{"setsize",         {"Установка размера массива",        "Set array size"},
 				{"Устанавливает размер массива, использование: setsize <array_size>\nДопустимы только натуральные числа\n",
@@ -35,11 +35,11 @@ struct command commands[COMMANDS_COUNT] = {
 						"Switches language to Russian\n"}},
 
 		{"exit",            {"Выход из программы",               "Exiting the program"},
-				{"71",
-						"72"}},
+				{"Завершает программу\n",
+						"Ends the program\n"}},
 };
 
-void help_void(int lang) {
+void help_void() {
 	for (int i = 0; i < COMMANDS_COUNT; i++) {
 		printf("%s - %s\n", commands[i].name, commands[i].description[lang]);
 	}
@@ -47,7 +47,7 @@ void help_void(int lang) {
 
 char *cmd_not_found[2] = {"Команда не найдена", "Command not found"};
 
-void help(char *cmd, int lang) {
+void help(char *cmd) {
 	bool find = false;
 	for (int i = 0; i < COMMANDS_COUNT; i++) {
 		if (strcmp(cmd, commands[i].name) == 0) {

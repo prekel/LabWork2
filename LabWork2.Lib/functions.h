@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
 
 #include <stdbool.h>
 
@@ -9,3 +10,5 @@ bool checkerN(int n);
 bool checkerResist(double n);
 
 int split(const char *str, char c, char ***arr);
+
+#endif
