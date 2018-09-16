@@ -2,6 +2,8 @@
 #include <malloc.h>
 #include <stdbool.h>
 #include <string.h>
+#include <time.h>
+#include <stdlib.h>
 #include "../LabWork2.Lib/functions.h"
 #include "options.h"
 #include "commands.h"
@@ -13,6 +15,7 @@
 struct resistarray resist;
 
 int main(int argc, char *argv[]) {
+	srand(time(NULL));
 	if (argc == 1 && strcmp(argv[0], "-en") == 0) lang = LANGUAGE_ENGLISH;
 
 	int n;
@@ -27,15 +30,19 @@ int main(int argc, char *argv[]) {
 	while (true) {
 		printf("> ");
 		input_line(string_command);
-		if (strcmp(string_command, "\n") == 0) continue;
 		int count = split(string_command, ' ', &split_command);
+
+		// Enter
+		if (strcmp(string_command, "\0") == 0) {
+			continue;
+		}
 		// help
-		if (strcmp(split_command[0], commands[0].name) == 0) {
+		else if (strcmp(split_command[0], commands[0].name) == 0) {
 			if (count == 1) help_void();
 			else help(split_command[1]);
 		}
 		// setsize
-		if (strcmp(split_command[0], commands[1].name) == 0) {
+		else if (strcmp(split_command[0], commands[1].name) == 0) {
 			if (count == 1) {
 				printf("%s\n", errormessages.value_not_entered[lang]);
 				continue;
@@ -49,7 +56,11 @@ int main(int argc, char *argv[]) {
 			setsize(&resist, size);
 		}
 		// fillmanual
-		if (strcmp(split_command[0], commands[2].name) == 0) {
+		else if (strcmp(split_command[0], commands[2].name) == 0) {
+			if (!resist.isSized) {
+				printf("%s\n", errormessages.not_sized[lang]);
+				continue;
+			}
 			if (count == 1) {
 				fillmanual_void(&resist);
 			} else {
@@ -65,9 +76,32 @@ int main(int argc, char *argv[]) {
 				fillmanual(&resist, split_command, 1);
 			}
 		}
+		// fillrandom
+		else if (strcmp(split_command[0], commands[3].name) == 0) {
+			if (!resist.isSized) {
+				printf("%s\n", errormessages.not_sized[lang]);
+				continue;
+			}
+			if (count < 3) {
+				printf("%s\n", errormessages.too_few[lang]);
+				continue;
+			}
+			if (count > 3) {
+				printf("%s\n", errormessages.too_much[lang]);
+				continue;
+			}
+			int min, max;
+			int code1 = sscanf(split_command[1], "%d", &min);
+			int code2 = sscanf(split_command[2], "%d", &max);
+			if (code1 == 0 || code2 == 0 || !checkerN(min) || !checkerN(max) || min > max) {
+				printf("%s\n", errormessages.invalid_natural_value[lang]);
+				continue;
+			}
+			fillrandom(&resist, min, max);
+		}
 		// calculateresist
-		if (strcmp(split_command[0], commands[4].name) == 0) {
-			if (resist.isFilled == false || resist.isSized == false) {
+		else if (strcmp(split_command[0], commands[4].name) == 0) {
+			if (!resist.isFilled || !resist.isSized) {
 				printf("%s\n", errormessages.not_sized_or_not_filled[lang]);
 			}
 			if (!resist.isCalculated) {
@@ -76,19 +110,23 @@ int main(int argc, char *argv[]) {
 			printresist(&resist);
 		}
 		// print
-		if (strcmp(split_command[0], commands[5].name) == 0) {
-			if (resist.isFilled == false || resist.isSized == false) {
+		else if (strcmp(split_command[0], commands[5].name) == 0) {
+			if (!resist.isFilled || !resist.isSized) {
 				printf("%s\n", errormessages.not_sized_or_not_filled[lang]);
+				continue;
 			}
 			print(&resist);
 		}
 		// switchlang
-		if (strcmp(split_command[0], commands[6].name) == 0) {
+		else if (strcmp(split_command[0], commands[6].name) == 0) {
 			lang = 1 - lang;
 		}
 		// exit
-		if (strcmp(split_command[0], commands[7].name) == 0) {
+		else if (strcmp(split_command[0], commands[7].name) == 0) {
 			return 0;
+		}
+		else {
+			printf("%s\n", errormessages.cmd_not_found[lang]);
 		}
 	}
 //	n = cycle_input_int("N: ", checkerN);

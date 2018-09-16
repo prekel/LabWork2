@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <malloc.h>
 #include <string.h>
+#include <stdlib.h>
 
 double serial_resist(int n, const double a[]) {
 	double sum = 0;
@@ -77,4 +78,8 @@ int split(const char *str, char c, char ***arr) {
 	}
 
 	return count;
+}
+
+int randominterval(int min, int max) {
+	return (rand() % (max - min)) + min;
 }

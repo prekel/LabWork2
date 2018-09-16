@@ -9,6 +9,7 @@ struct errmessages {
 	char *too_much[2];
 	char *too_few[2];
 	char *not_sized_or_not_filled[2];
+	char *not_sized[2];
 };
 struct errmessages errormessages;
 struct mssages {

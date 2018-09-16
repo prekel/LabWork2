@@ -22,8 +22,8 @@ struct command commands[COMMANDS_COUNT] = {
 						"Without argument: Begins reading the values of the array, each read from a new line via enter\nWith argument (help <cmd_name>): Reads the values of the array using a space as a separator\nValid values: Rational number greater than zero\n"}},
 
 		{"fillrandom",      {"Заполнение случайными значениями", "Filling with random values"},
-				{"Заполняет случайными значениями от min до max, использование: fillrandom <min> <max>\nmin и max - натуральные числа\n",
-						"Fills with random values from min to max, usage: fillrandom <min> <max>\nmin and max are natural numbers\n"}},
+				{"Заполняет случайными значениями от min до max, использование: fillrandom <min> <max>\nmin и max - натуральные числа, min <= max\n",
+						"Fills with random values from min to max, usage: fillrandom <min> <max>\nmin and max are natural numbers, min <= max\n"}},
 
 		{"calculateresist", {"Вычислить сопротивление",          "Calculate resistance"},
 				{"Вычисляет сопротивление для последовательного и параллельного соеденения, значения массива должны быть введены\n",
@@ -85,6 +85,14 @@ void fillmanual_void(struct resistarray *resist) {
 		//else sprintf(output, "Enter element #%d: ", i + 1);
 		sprintf(output, "%s%d: ", messages.enter_value_number[lang], i + 1);
 		resist->values[i] = cycle_input_double(output, checkerResist);
+	}
+	resist->isFilled = true;
+	resist->isCalculated = false;
+}
+
+void fillrandom(struct resistarray *resist, int min, int max) {
+	for (int i = 0; i < resist->n; i++) {
+		resist->values[i] = randominterval(min, max);
 	}
 	resist->isFilled = true;
 	resist->isCalculated = false;
