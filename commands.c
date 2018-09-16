@@ -100,3 +100,9 @@ void printresist(struct resistarray *resist) {
 	printf("%s%15.6lf\n", messages.serial_resist[lang], resist->serial);
 	printf("%s%15.6lf\n", messages.parallel_resist[lang], resist->parallel);
 }
+
+void print(struct resistarray *resist) {
+	for (int i = 0; i < resist->n; i++) {
+		printf("%15.6lf\n", resist->values[i]);
+	}
+}

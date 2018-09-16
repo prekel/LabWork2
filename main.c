@@ -6,6 +6,7 @@
 #include "options.h"
 #include "commands.h"
 #include "messages.h"
+#include "input.h"
 
 //int lang = 0;
 
@@ -73,6 +74,13 @@ int main(int argc, char *argv[]) {
 				calculateresist(&resist);
 			}
 			printresist(&resist);
+		}
+		// print
+		if (strcmp(split_command[0], commands[5].name) == 0) {
+			if (resist.isFilled == false || resist.isSized == false) {
+				printf("%s\n", errormessages.not_sized_or_not_filled[lang]);
+			}
+			print(&resist);
 		}
 		// switchlang
 		if (strcmp(split_command[0], commands[6].name) == 0) {

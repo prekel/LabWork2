@@ -36,4 +36,6 @@ void calculateresist(struct resistarray *resist);
 
 void printresist(struct resistarray *resist);
 
+void print(struct resistarray *resist);
+
 #endif
