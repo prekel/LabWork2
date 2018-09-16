@@ -6,32 +6,6 @@
 #include "options.h"
 #include "commands.h"
 
-int cycle_input_int(char *output, bool(*checker)(int)) {
-	int n;
-	char string_number[100];
-	while (1) {
-		printf("%s", output);
-		scanf("%s", string_number);
-		int code = sscanf(string_number, "%d", &n);
-		if (!checker(n)) continue;
-		if (code > 0) break;
-	}
-	return n;
-}
-
-double cycle_input_double(char *output, bool(*checker)(double)) {
-	double n;
-	char string_number[100];
-	while (1) {
-		printf("%s", output);
-		scanf("%s", string_number);
-		int code = sscanf(string_number, "%lf", &n);
-		if (!checker(n)) continue;
-		if (code > 0) break;
-	}
-	return n;
-}
-
 int input_line(char *str) {
 	fgets(str, MAX_STRING_LENGTH, stdin);
 	int size = strlen(str);
@@ -72,6 +46,11 @@ int main(int argc, char *argv[]) {
 			if (code == 0 || !checkerN(size)) continue;
 			setsize(&resist, size);
 		}
+		// setsize
+		if (strcmp(split_command[0], commands[2].name) == 0) {
+			if (count == 1) continue;
+			fillmanual(&resist, split_command, 1);
+		}
 		// switchlang
 		if (strcmp(split_command[0], commands[6].name) == 0) {
 			lang = 1 - lang;
@@ -81,18 +60,18 @@ int main(int argc, char *argv[]) {
 			return 0;
 		}
 	}
-	n = cycle_input_int("N: ", checkerN);
-
-	double *resist = (double *) malloc(n * sizeof(double));
-	for (int i = 0; i < n; i++) {
-		sprintf(output, "R n%d: ", i + 1);
-		resist[i] = cycle_input_double(output, checkerResist);
-	}
-
-	printf("R serial:   %15.6lf\n", serial_resist(n, resist));
-	printf("R parallel: %15.6lf\n", parallel_resist(n, resist));
-	fflush(stdout);
-	free(resist);
+//	n = cycle_input_int("N: ", checkerN);
+//
+//	double *resist = (double *) malloc(n * sizeof(double));
+//	for (int i = 0; i < n; i++) {
+//		sprintf(output, "R n%d: ", i + 1);
+//		resist[i] = cycle_input_double(output, checkerResist);
+//	}
+//
+//	printf("R serial:   %15.6lf\n", serial_resist(n, resist));
+//	printf("R parallel: %15.6lf\n", parallel_resist(n, resist));
+//	fflush(stdout);
+//	free(resist);
 	//}
 
 	return 0;

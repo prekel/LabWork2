@@ -20,4 +20,7 @@ void help(char *cmd);
 
 void setsize(struct resistarray *resist, int size);
 
+
+void fillmanual(struct resistarray *resist, char **arrstr, int firstindex);
+
 #endif

@@ -64,3 +64,41 @@ void setsize(struct resistarray *resist, int size) {
 	resist->n = size;
 	resist->values = (double *) malloc(size * sizeof(double));
 }
+
+
+int cycle_input_int(char *output, bool(*checker)(int)) {
+	int n;
+	char string_number[100];
+	while (1) {
+		printf("%s", output);
+		scanf("%s", string_number);
+		int code = sscanf(string_number, "%d", &n);
+		if (!checker(n)) continue;
+		if (code > 0) break;
+	}
+	return n;
+}
+
+double cycle_input_double(char *output, bool(*checker)(double)) {
+	double n;
+	char string_number[100];
+	while (1) {
+		printf("%s", output);
+		scanf("%s", string_number);
+		int code = sscanf(string_number, "%lf", &n);
+		if (!checker(n)) continue;
+		if (code > 0) break;
+	}
+	return n;
+}
+
+char *invalid_values[2] = {"Введено неверное значение(-ия)", "Invalid value(-s) entered"};
+
+void fillmanual(struct resistarray *resist, char **arrstr, int firstindex)
+{
+	int code;
+	for (int i = 0; i < resist->n; i++) {
+		if (!sscanf(arrstr[i + firstindex], "%lf", &resist->values[i]))
+			printf("%s\n", invalid_values[lang]);
+	}
+}
