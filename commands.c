@@ -5,6 +5,8 @@
 #include "../LabWork2.Lib/functions.h"
 #include "commands.h"
 #include "options.h"
+#include "messages.h"
+#include "input.h"
 
 struct command commands[COMMANDS_COUNT] = {
 		{"help",            {"Вывод справки",                    "Print help"},
@@ -40,22 +42,6 @@ struct command commands[COMMANDS_COUNT] = {
 						"Ends the program\n"}},
 };
 
-struct errmessages errormessages = {
-		{"Команда не найдена",             "Command not found"},
-		{"Введено неверное значение(-ия)", "Invalid value(-s) entered"},
-		{"Введено неверное значение",      "Invalid value entered"},
-		{"Значение не введено",            "Value not entered"},
-		{"Введено слишком много значений", "Too many values entered"},
-		{"Введено слишком мало значений",  "Too few values entered"},
-		{"Значения массива не определены", "Values not entered"}
-};
-
-struct mssages messages = {
-		{"Введите элемент №",                                    "Enter element #"},
-		{"Общее сопротивление при последовательном соединении:", "Total resistance with serial connection:  "},
-		{"Общее сопротивление при параллельном соединении:    ", "Total resistance with parallel connection:"},
-};
-
 void help_void() {
 	for (int i = 0; i < COMMANDS_COUNT; i++) {
 		printf("%s - %s\n", commands[i].name, commands[i].description[lang]);
@@ -80,41 +66,6 @@ void setsize(struct resistarray *resist, int size) {
 	resist->values = (double *) malloc(size * sizeof(double));
 	resist->isSized = true;
 	resist->isCalculated = false;
-}
-
-int input_line(char *str) {
-	fgets(str, MAX_STRING_LENGTH, stdin);
-	int size = strlen(str);
-	str[strlen(str) - 1] = '\0';
-	return size;
-}
-
-int cycle_input_int(char *output, bool(*checker)(int)) {
-	int n;
-	char string_number[100];
-	while (true) {
-		printf("%s", output);
-		//scanf("%s", string_number);
-		input_line(string_number);
-		int code = sscanf(string_number, "%d", &n);
-		if (!checker(n)) continue;
-		if (code > 0) break;
-	}
-	return n;
-}
-
-double cycle_input_double(char *output, bool(*checker)(double)) {
-	double n;
-	char string_number[100];
-	while (true) {
-		printf("%s", output);
-		//scanf("%s", string_number);
-		input_line(string_number);
-		int code = sscanf(string_number, "%lf", &n);
-		if (!checker(n)) continue;
-		if (code > 0) break;
-	}
-	return n;
 }
 
 void fillmanual(struct resistarray *resist, char **arrstr, int firstindex) {
