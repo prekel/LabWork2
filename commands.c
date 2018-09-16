@@ -22,8 +22,8 @@ struct command commands[COMMANDS_COUNT] = {
 						"Without argument: Begins reading the values of the array, each read from a new line via enter\nWith argument (help <cmd_name>): Reads the values of the array using a space as a separator\nValid values: Real number greater than zero\n"}},
 
 		{"fillrandom",      {"Заполнение случайными значениями", "Filling with random values"},
-				{"Заполняет случайными значениями от min до max, использование: fillrandom <min> <max>\nmin и max - натуральные числа, min <= max\n",
-						"Fills with random values from min to max, usage: fillrandom <min> <max>\nmin and max are natural numbers, min <= max\n"}},
+				{"Заполняет случайными значениями от min до max, использование: fillrandom <min> <max>\nmin и max - натуральные числа, min < max\n",
+						"Fills with random values from min to max, usage: fillrandom <min> <max>\nmin and max are natural numbers, min < max\n"}},
 
 		{"changevalue",     {"Изменить значение",                "Change Value"},
 				{"Меняет значение, использование: changevalue <номер> <значение>\nНомер - натуральное число, значение - вещественное больше нуля\n",

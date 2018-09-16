@@ -117,7 +117,7 @@ int main(int argc, char *argv[]) {
 			double val;
 			int code1 = sscanf(split_command[1], "%d", &index);
 			int code2 = sscanf(split_command[2], "%lf", &val);
-			if (code1 == 0 || code2 == 0 || !checkerN(index) || index >= resist.n || !checkerResist(val)) {
+			if (code1 == 0 || code2 == 0 || index < 0 || index >= resist.n || !checkerResist(val)) {
 				printf("%s\n", errormessages.invalid_values[lang]);
 				continue;
 			}
