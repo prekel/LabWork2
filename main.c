@@ -6,13 +6,6 @@
 #include "options.h"
 #include "commands.h"
 
-int input_line(char *str) {
-	fgets(str, MAX_STRING_LENGTH, stdin);
-	int size = strlen(str);
-	str[strlen(str) - 1] = '\0';
-	return size;
-}
-
 //int lang = 0;
 
 struct resistarray resist;
@@ -69,6 +62,16 @@ int main(int argc, char *argv[]) {
 				}
 				fillmanual(&resist, split_command, 1);
 			}
+		}
+		// calculateresist
+		if (strcmp(split_command[0], commands[4].name) == 0) {
+			if (resist.isFilled == false || resist.isSized == false) {
+				printf("%s\n", errormessages.not_sized_or_not_filled[lang]);
+			}
+			if (!resist.isCalculated) {
+				calculateresist(&resist);
+			}
+			printresist(&resist);
 		}
 		// switchlang
 		if (strcmp(split_command[0], commands[6].name) == 0) {
