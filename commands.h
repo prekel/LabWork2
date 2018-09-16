@@ -1,5 +1,5 @@
-#ifndef COMMANDS_H
-#define COMMANDS_H
+#ifndef LABWORK2_COMMANDS_H
+#define LABWORK2_COMMANDS_H
 
 #include <stdbool.h>
 
@@ -23,17 +23,17 @@ struct resistarray {
 };
 
 void help_void();
+
 void help(char *cmd);
 
 void setsize(struct resistarray *resist, int size);
-
-int input_line(char *str);
 
 void fillmanual(struct resistarray *resist, char **arrstr, int firstindex);
 
 void fillmanual_void(struct resistarray *resist);
 
 void calculateresist(struct resistarray *resist);
+
 void printresist(struct resistarray *resist);
 
 #endif
