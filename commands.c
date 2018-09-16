@@ -22,16 +22,16 @@ struct command commands[COMMANDS_COUNT] = {
 						"Without argument: Begins reading the values of the array, each read from a new line via enter\nWith argument (help <cmd_name>): Reads the values of the array using a space as a separator\nValid values: Rational number greater than zero\n"}},
 
 		{"fillrandom",      {"Заполнение случайными значениями", "Filling with random values"},
-				{"31",
-						"32"}},
+				{"Заполняет случайными значениями от min до max, использование: fillrandom <min> <max>\nmin и max - натуральные числа\n",
+						"Fills with random values from min to max, usage: fillrandom <min> <max>\nmin and max are natural numbers\n"}},
 
 		{"calculateresist", {"Вычислить сопротивление",          "Calculate resistance"},
 				{"Вычисляет сопротивление для последовательного и параллельного соеденения, значения массива должны быть введены\n",
 						"Calculates the resistance for serial and parallel connections, array values must be entered\n"}},
 
 		{"print",           {"Печать массива",                   "Print array"},
-				{"51",
-						"52"}},
+				{"Выводит массив\n",
+						"Displays an array\n"}},
 
 		{"switchlang",      {"Switch language to English",       "Переключить язык на русский"},
 				{"Переключает язык на английский\n",
