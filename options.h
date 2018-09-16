@@ -2,7 +2,7 @@
 #define LABWORK2_OPTIONS_H
 
 #define MAX_STRING_LENGTH 100
-#define COMMANDS_COUNT 8
+#define COMMANDS_COUNT 9
 
 enum Language {
 	LANGUAGE_RUSSIAN = 0,

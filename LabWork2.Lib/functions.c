@@ -2,6 +2,7 @@
 #include <malloc.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 
 double serial_resist(int n, const double a[]) {
 	double sum = 0;
@@ -27,6 +28,7 @@ bool checkerResist(double n) {
 	return true;
 }
 
+// Чужая реализация
 int split(const char *str, char c, char ***arr) {
 	int count = 1;
 	int token_len = 1;
@@ -82,4 +84,9 @@ int split(const char *str, char c, char ***arr) {
 
 int randominterval(int min, int max) {
 	return (rand() % (max - min)) + min;
+}
+
+int digits_in_number(int a) {
+	if (a == 0) return 1;
+	return (int) log10(abs(a)) + 1;
 }

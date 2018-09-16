@@ -49,3 +49,13 @@ TEST(TestCaseName, SplitTest1) {
 	ASSERT_STREQ("split", splitted[1]);
 	ASSERT_STREQ("this", splitted[2]);
 }
+
+TEST(TestCaseName, DigitsInNumberTest) {
+	ASSERT_EQ(3, digits_in_number(123));
+	ASSERT_EQ(1, digits_in_number(0));
+	ASSERT_EQ(1, digits_in_number(1));
+	ASSERT_EQ(5, digits_in_number(12345));
+	ASSERT_EQ(3, digits_in_number(-123));
+	ASSERT_EQ(1, digits_in_number(-1));
+	ASSERT_EQ(5, digits_in_number(-12345));
+}
