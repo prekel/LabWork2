@@ -5,6 +5,7 @@
 #include "../LabWork2.Lib/functions.h"
 #include "commands.h"
 #include "options.h"
+#include "messages.h"
 
 struct command commands[COMMANDS_COUNT] = {
 		{"help",            {"Вывод справки",                    "Print help"},
@@ -38,22 +39,6 @@ struct command commands[COMMANDS_COUNT] = {
 		{"exit",            {"Выход из программы",               "Exiting the program"},
 				{"Завершает программу\n",
 						"Ends the program\n"}},
-};
-
-struct errmessages errormessages = {
-		{"Команда не найдена",             "Command not found"},
-		{"Введено неверное значение(-ия)", "Invalid value(-s) entered"},
-		{"Введено неверное значение",      "Invalid value entered"},
-		{"Значение не введено",            "Value not entered"},
-		{"Введено слишком много значений", "Too many values entered"},
-		{"Введено слишком мало значений",  "Too few values entered"},
-		{"Значения массива не определены", "Values not entered"}
-};
-
-struct mssages messages = {
-		{"Введите элемент №",                                    "Enter element #"},
-		{"Общее сопротивление при последовательном соединении:", "Total resistance with serial connection:  "},
-		{"Общее сопротивление при параллельном соединении:    ", "Total resistance with parallel connection:"},
 };
 
 void help_void() {

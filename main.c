@@ -5,6 +5,7 @@
 #include "../LabWork2.Lib/functions.h"
 #include "options.h"
 #include "commands.h"
+#include "messages.h"
 
 //int lang = 0;
 
