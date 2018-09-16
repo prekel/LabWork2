@@ -8,7 +8,7 @@
 struct command commands[COMMANDS_COUNT] = {
 		{"help",            {"Вывод справки",                    "Print help"},
 				{"Без аргумента: Выводит описание всех команд\nС аргументом (help <имя_команды>): Выводит подробное описание команды\n",
-						"Without argument: Print all commands description\nWith argument (help <cmd_name>): Print detailed info about command]\n"}},
+						"Without argument: Print all commands description\nWith argument (help <cmd_name>): Print detailed info about command\n"}},
 
 		{"setsize",         {"Установка размера массива",        "Set array size"},
 				{"Устанавливает размер массива, использование: setsize <array_size>\nДопустимы только натуральные числа\n",
