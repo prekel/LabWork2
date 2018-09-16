@@ -1,38 +1,171 @@
 #include <stdio.h>
+#include <malloc.h>
+#include <stdbool.h>
+#include <string.h>
+#include <time.h>
+#include <stdlib.h>
+#include "../LabWork2.Lib/functions.h"
+#include "options.h"
+#include "commands.h"
+#include "messages.h"
+#include "input.h"
 
-double serial_resist(int n, const double a[]) {
-    double sum = 0;
-    for (int i = 0; i < n; i++) sum += a[i];
-    return sum;
-}
+//int lang = 0;
 
-double parallel_resist(int n, const double a[]) {
-    double prod = 1;
-    for (int i = 0; i < n; i++) prod *= a[i];
-    double sum = 0;
-    for (int i = 0; i < n; i++) sum += prod / a[i];
-    return prod / sum;
-}
+struct resistarray resist;
 
-int main() {
-    int n;
-    printf("N: ");
-    scanf("%d", &n);
-    char string_number[100];
-    double resist[1000];
-    for (int i = 0; i < n; i++) {
-        while (1) {
-            printf("R n%d: ", i + 1);
-            scanf("%s", string_number);
-            int code = sscanf(string_number, "%lf", &resist[i]);
-            if (resist[i] == 0) continue;
-            if (code > 0) break;
-        };
-    }
+int main(int argc, char *argv[]) {
+	srand(time(NULL));
+	if (argc == 1 && strcmp(argv[0], "-en") == 0) lang = LANGUAGE_ENGLISH;
 
-    printf("R serial:   %15.6lf\n", serial_resist(n, resist));
-    printf("R parallel: %15.6lf\n", parallel_resist(n, resist));
-    fflush(stdout);
+	int n;
+	char output[100];
 
-    return 0;
+	char string_command[MAX_STRING_LENGTH];
+	char **split_command;
+
+	printf("Введите \"help\" для справки, \"help <имя_команды>\" для подробного описания команды\n");
+	printf("Enter \"help\" for help, \"help <сmd_name>\" for detailed info about command\n");
+
+	while (true) {
+		printf("> ");
+		input_line(string_command);
+		int count = split(string_command, ' ', &split_command);
+
+		// Enter
+		if (strcmp(string_command, "\0") == 0) {
+			continue;
+		}
+			// help
+		else if (strcmp(split_command[0], commands[0].name) == 0) {
+			if (count == 1) help_void();
+			else help(split_command[1]);
+		}
+			// setsize
+		else if (strcmp(split_command[0], commands[1].name) == 0) {
+			if (count == 1) {
+				printf("%s\n", errormessages.value_not_entered[lang]);
+				continue;
+			}
+			int size;
+			int code = sscanf(split_command[1], "%d", &size);
+			if (code == 0 || !checkerN(size)) {
+				printf("%s\n", errormessages.invalid_natural_value[lang]);
+				continue;
+			}
+			setsize(&resist, size);
+		}
+			// fillmanual
+		else if (strcmp(split_command[0], commands[2].name) == 0) {
+			if (!resist.isSized) {
+				printf("%s\n", errormessages.not_sized[lang]);
+				continue;
+			}
+			if (count == 1) {
+				fillmanual_void(&resist);
+			} else {
+				int n1 = count - 1;
+				if (n1 > resist.n) {
+					printf("%s\n", errormessages.too_much[lang]);
+					continue;
+				}
+				if (n1 < resist.n) {
+					printf("%s\n", errormessages.too_few[lang]);
+					continue;
+				}
+				fillmanual(&resist, split_command, 1);
+			}
+		}
+			// fillrandom
+		else if (strcmp(split_command[0], commands[3].name) == 0) {
+			if (!resist.isSized) {
+				printf("%s\n", errormessages.not_sized[lang]);
+				continue;
+			}
+			if (count < 3) {
+				printf("%s\n", errormessages.too_few[lang]);
+				continue;
+			}
+			if (count > 3) {
+				printf("%s\n", errormessages.too_much[lang]);
+				continue;
+			}
+			int min, max;
+			int code1 = sscanf(split_command[1], "%d", &min);
+			int code2 = sscanf(split_command[2], "%d", &max);
+			if (code1 == 0 || code2 == 0 || !checkerN(min) || !checkerN(max) || min > max) {
+				printf("%s\n", errormessages.invalid_natural_value[lang]);
+				continue;
+			}
+			fillrandom(&resist, min, max);
+		}
+			// changevalue
+		else if (strcmp(split_command[0], commands[4].name) == 0) {
+			if (!resist.isFilled || !resist.isSized) {
+				printf("%s\n", errormessages.not_sized_or_not_filled[lang]);
+				continue;
+			}
+			if (count < 3) {
+				printf("%s\n", errormessages.too_few[lang]);
+				continue;
+			}
+			if (count > 3) {
+				printf("%s\n", errormessages.too_much[lang]);
+				continue;
+			}
+			int index;
+			double val;
+			int code1 = sscanf(split_command[1], "%d", &index);
+			int code2 = sscanf(split_command[2], "%lf", &val);
+			if (code1 == 0 || code2 == 0 || !checkerN(index) || index >= resist.n || !checkerResist(val)) {
+				printf("%s\n", errormessages.invalid_values[lang]);
+				continue;
+			}
+			changevalue(&resist, index, val);
+		}
+			// calculateresist
+		else if (strcmp(split_command[0], commands[5].name) == 0) {
+			if (!resist.isFilled || !resist.isSized) {
+				printf("%s\n", errormessages.not_sized_or_not_filled[lang]);
+				continue;
+			}
+			if (!resist.isCalculated) {
+				calculateresist(&resist);
+			}
+			printresist(&resist);
+		}
+			// print
+		else if (strcmp(split_command[0], commands[6].name) == 0) {
+			if (!resist.isFilled || !resist.isSized) {
+				printf("%s\n", errormessages.not_sized_or_not_filled[lang]);
+				continue;
+			}
+			print(&resist);
+		}
+			// switchlang
+		else if (strcmp(split_command[0], commands[7].name) == 0) {
+			lang = 1 - lang;
+		}
+			// exit
+		else if (strcmp(split_command[0], commands[8].name) == 0) {
+			return 0;
+		} else {
+			printf("%s\n", errormessages.cmd_not_found[lang]);
+		}
+	}
+//	n = cycle_input_int("N: ", checkerN);
+//
+//	double *resist = (double *) malloc(n * sizeof(double));
+//	for (int i = 0; i < n; i++) {
+//		sprintf(output, "R n%d: ", i + 1);
+//		resist[i] = cycle_input_double(output, checkerResist);
+//	}
+//
+//	printf("R serial:   %15.6lf\n", serial_resist(n, resist));
+//	printf("R parallel: %15.6lf\n", parallel_resist(n, resist));
+//	fflush(stdout);
+//	free(resist);
+	//}
+
+	return 0;
 }

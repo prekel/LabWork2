@@ -1,0 +1,12 @@
+#ifndef LABWORK2_OPTIONS_H
+#define LABWORK2_OPTIONS_H
+
+#define MAX_STRING_LENGTH 100
+#define COMMANDS_COUNT 9
+
+enum Language {
+	LANGUAGE_RUSSIAN = 0,
+	LANGUAGE_ENGLISH = 1
+} lang;
+
+#endif
