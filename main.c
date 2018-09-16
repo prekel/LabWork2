@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "../LabWork2.Lib/functions.h"
-#include "macro.h"
+#include "options.h"
 #include "commands.h"
 
 int cycle_input_int(char *output, bool(*checker)(int)) {
@@ -39,12 +39,12 @@ int input_line(char *str) {
 	return size;
 }
 
-int lang = 0;
+//int lang = 0;
 
 struct resistarray resist;
 
 int main(int argc, char *argv[]) {
-	if (argc == 1 && strcmp(argv[0], "-en") == 0) lang = 1;
+	if (argc == 1 && strcmp(argv[0], "-en") == 0) lang = LANGUAGE_ENGLISH;
 
 	int n;
 	char output[100];
@@ -61,8 +61,8 @@ int main(int argc, char *argv[]) {
 		int count = split(string_command, ' ', &split_command);
 		// help
 		if (strcmp(split_command[0], commands[0].name) == 0) {
-			if (count == 1) help_void(lang);
-			else help(split_command[1], lang);
+			if (count == 1) help_void();
+			else help(split_command[1]);
 		}
 		// setsize
 		if (strcmp(split_command[0], commands[1].name) == 0) {
@@ -73,11 +73,11 @@ int main(int argc, char *argv[]) {
 			setsize(&resist, size);
 		}
 		// switchlang
-		if (strcmp(string_command, commands[6].name) == 0) {
+		if (strcmp(split_command[0], commands[6].name) == 0) {
 			lang = 1 - lang;
 		}
 		// exit
-		if (strcmp(string_command, commands[7].name) == 0) {
+		if (strcmp(split_command[0], commands[7].name) == 0) {
 			return 0;
 		}
 	}

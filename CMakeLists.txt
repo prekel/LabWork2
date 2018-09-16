@@ -4,8 +4,8 @@ project(LabWork2)
 
 #set(CMAKE_C_STANDARD 11)
 
-set(SOURCES main.c commands.c commands.h)
-set(HEADERS commands.h macro.h)
+set(SOURCES main.c commands.c commands.h options.c)
+set(HEADERS commands.h options.h options.c)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
