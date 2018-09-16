@@ -32,8 +32,14 @@ void fillmanual(struct resistarray *resist, char **arrstr, int firstindex);
 
 void fillmanual_void(struct resistarray *resist);
 
+void fillrandom(struct resistarray *resist, int min, int max);
+
+void changevalue(struct resistarray *resist, int index, double value);
+
 void calculateresist(struct resistarray *resist);
 
 void printresist(struct resistarray *resist);
+
+void print(struct resistarray *resist);
 
 #endif

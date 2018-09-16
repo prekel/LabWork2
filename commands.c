@@ -18,20 +18,24 @@ struct command commands[COMMANDS_COUNT] = {
 						"Sets size of array, usage: setsize <array_size>\nOnly natural numbers are allowed\n"}},
 
 		{"fillmanual",      {"Ввод значений вручную",            "Entering values manually"},
-				{"Без аргумента: Начинает считывание значений массива, каждый считывается с новой строки через enter\nС аргументом (fillmanual <значения_через_пробел>): Считывает значения массива используя пробел как разделитель\nДопустимые значения: Рациональное число большее нуля\n",
-						"Without argument: Begins reading the values of the array, each read from a new line via enter\nWith argument (help <cmd_name>): Reads the values of the array using a space as a separator\nValid values: Rational number greater than zero\n"}},
+				{"Без аргумента: Начинает считывание значений массива, каждый считывается с новой строки через enter\nС аргументом (fillmanual <значения_через_пробел>): Считывает значения массива используя пробел как разделитель\nДопустимые значения: Вещественное число большее нуля\n",
+						"Without argument: Begins reading the values of the array, each read from a new line via enter\nWith argument (help <cmd_name>): Reads the values of the array using a space as a separator\nValid values: Real number greater than zero\n"}},
 
 		{"fillrandom",      {"Заполнение случайными значениями", "Filling with random values"},
-				{"31",
-						"32"}},
+				{"Заполняет случайными значениями от min до max, использование: fillrandom <min> <max>\nmin и max - натуральные числа, min <= max\n",
+						"Fills with random values from min to max, usage: fillrandom <min> <max>\nmin and max are natural numbers, min <= max\n"}},
+
+		{"changevalue",     {"Изменить значение",                "Change Value"},
+				{"Меняет значение, использование: changevalue <номер> <значение>\nНомер - натуральное число, значение - вещественное больше нуля\n",
+						"Changes the value, usage: changevalue <index> <value>\nIndex - natural number, value - real number"}},
 
 		{"calculateresist", {"Вычислить сопротивление",          "Calculate resistance"},
 				{"Вычисляет сопротивление для последовательного и параллельного соеденения, значения массива должны быть введены\n",
 						"Calculates the resistance for serial and parallel connections, array values must be entered\n"}},
 
 		{"print",           {"Печать массива",                   "Print array"},
-				{"51",
-						"52"}},
+				{"Выводит массив\n",
+						"Displays an array\n"}},
 
 		{"switchlang",      {"Switch language to English",       "Переключить язык на русский"},
 				{"Переключает язык на английский\n",
@@ -39,7 +43,7 @@ struct command commands[COMMANDS_COUNT] = {
 
 		{"exit",            {"Выход из программы",               "Exiting the program"},
 				{"Завершает программу\n",
-						"Ends the program\n"}},
+						"Ends the program\n"}}
 };
 
 void help_void() {
@@ -90,6 +94,20 @@ void fillmanual_void(struct resistarray *resist) {
 	resist->isCalculated = false;
 }
 
+void fillrandom(struct resistarray *resist, int min, int max) {
+	for (int i = 0; i < resist->n; i++) {
+		resist->values[i] = randominterval(min, max);
+	}
+	resist->isFilled = true;
+	resist->isCalculated = false;
+}
+
+void changevalue(struct resistarray *resist, int index, double value) {
+	resist->values[index] = value;
+	resist->isFilled = true;
+	resist->isCalculated = false;
+}
+
 void calculateresist(struct resistarray *resist) {
 	resist->parallel = parallel_resist(resist->n, resist->values);
 	resist->serial = serial_resist(resist->n, resist->values);
@@ -99,4 +117,10 @@ void calculateresist(struct resistarray *resist) {
 void printresist(struct resistarray *resist) {
 	printf("%s%15.6lf\n", messages.serial_resist[lang], resist->serial);
 	printf("%s%15.6lf\n", messages.parallel_resist[lang], resist->parallel);
+}
+
+void print(struct resistarray *resist) {
+	for (int i = 0; i < resist->n; i++) {
+		printf("%15.6lf\n", resist->values[i]);
+	}
 }

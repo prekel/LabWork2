@@ -13,4 +13,8 @@ bool checkerResist(double n);
 
 int split(const char *str, char c, char ***arr);
 
+int randominterval(int min, int max);
+
+int digits_in_number(int a);
+
 #endif
