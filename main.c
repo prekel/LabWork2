@@ -32,6 +32,7 @@ int main(int argc, char *argv[]) {
 	while (true) {
 		printf("> ");
 		input_line(string_command);
+		if (strcmp(string_command, "\n") == 0) continue;
 		int count = split(string_command, ' ', &split_command);
 		// help
 		if (strcmp(split_command[0], commands[0].name) == 0) {
@@ -40,16 +41,34 @@ int main(int argc, char *argv[]) {
 		}
 		// setsize
 		if (strcmp(split_command[0], commands[1].name) == 0) {
-			if (count == 1) continue;
+			if (count == 1) {
+				printf("%s\n", errormessages.value_not_entered[lang]);
+				continue;
+			}
 			int size;
 			int code = sscanf(split_command[1], "%d", &size);
-			if (code == 0 || !checkerN(size)) continue;
+			if (code == 0 || !checkerN(size)) {
+				printf("%s\n", errormessages.invalid_natural_value[lang]);
+				continue;
+			}
 			setsize(&resist, size);
 		}
-		// setsize
+		// fillmanual
 		if (strcmp(split_command[0], commands[2].name) == 0) {
-			if (count == 1) continue;
-			fillmanual(&resist, split_command, 1);
+			if (count == 1) {
+				fillmanual_void(&resist);
+			} else {
+				int n1 = count - 1;
+				if (n1 > resist.n) {
+					printf("%s\n", errormessages.too_much[lang]);
+					continue;
+				}
+				if (n1 < resist.n) {
+					printf("%s\n", errormessages.too_few[lang]);
+					continue;
+				}
+				fillmanual(&resist, split_command, 1);
+			}
 		}
 		// switchlang
 		if (strcmp(split_command[0], commands[6].name) == 0) {

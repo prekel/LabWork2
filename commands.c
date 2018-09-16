@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
+#include "../LabWork2.Lib/functions.h"
 #include "commands.h"
 #include "options.h"
 
@@ -39,13 +40,20 @@ struct command commands[COMMANDS_COUNT] = {
 						"Ends the program\n"}},
 };
 
+struct errmessages errormessages = {
+		{"Команда не найдена",             "Command not found"},
+		{"Введено неверное значение(-ия)", "Invalid value(-s) entered"},
+		{"Введено неверное значение",      "Invalid value entered"},
+		{"Значение не введено",            "Value not entered"},
+		{"Введено слишком много значений", "Too many values entered"},
+		{"Введено слишком мало значений",  "Too few values entered"}
+};
+
 void help_void() {
 	for (int i = 0; i < COMMANDS_COUNT; i++) {
 		printf("%s - %s\n", commands[i].name, commands[i].description[lang]);
 	}
 }
-
-char *cmd_not_found[2] = {"Команда не найдена", "Command not found"};
 
 void help(char *cmd) {
 	bool find = false;
@@ -56,7 +64,7 @@ void help(char *cmd) {
 		}
 	}
 	if (find == false) {
-		printf("%s", cmd_not_found[lang]);
+		printf("%s", errormessages.cmd_not_found[lang]);
 	}
 }
 
@@ -69,7 +77,7 @@ void setsize(struct resistarray *resist, int size) {
 int cycle_input_int(char *output, bool(*checker)(int)) {
 	int n;
 	char string_number[100];
-	while (1) {
+	while (true) {
 		printf("%s", output);
 		scanf("%s", string_number);
 		int code = sscanf(string_number, "%d", &n);
@@ -82,7 +90,7 @@ int cycle_input_int(char *output, bool(*checker)(int)) {
 double cycle_input_double(char *output, bool(*checker)(double)) {
 	double n;
 	char string_number[100];
-	while (1) {
+	while (true) {
 		printf("%s", output);
 		scanf("%s", string_number);
 		int code = sscanf(string_number, "%lf", &n);
@@ -92,13 +100,20 @@ double cycle_input_double(char *output, bool(*checker)(double)) {
 	return n;
 }
 
-char *invalid_values[2] = {"Введено неверное значение(-ия)", "Invalid value(-s) entered"};
-
 void fillmanual(struct resistarray *resist, char **arrstr, int firstindex)
 {
 	int code;
 	for (int i = 0; i < resist->n; i++) {
 		if (!sscanf(arrstr[i + firstindex], "%lf", &resist->values[i]))
-			printf("%s\n", invalid_values[lang]);
+			printf("%s\n", errormessages.invalid_values[lang]);
+	}
+}
+
+void fillmanual_void(struct resistarray *resist) {
+	char output[MAX_STRING_LENGTH];
+	for (int i = 0; i < resist->n; i++) {
+		if (lang == LANGUAGE_RUSSIAN) sprintf(output, "Введите элемент №%d: ", i + 1);
+		else sprintf(output, "Enter element #%d: ", i + 1);
+		resist->values[i] = cycle_input_double(output, checkerResist);
 	}
 }
