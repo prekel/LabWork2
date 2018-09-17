@@ -4,6 +4,10 @@
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
+#ifdef _WIN32
+//#include <locale.h>
+//#include <windows.h>
+#endif
 #include "../LabWork2.Lib/functions.h"
 #include "options.h"
 #include "commands.h"
@@ -15,6 +19,12 @@
 int main(int argc, char *argv[]) {
 	srand(time(NULL));
 	if (argc == 1 && strcmp(argv[0], "-en") == 0) lang = LANGUAGE_ENGLISH;
+#ifdef _WIN32
+	//setlocale(0, "");
+	//setlocale(LC_ALL, "Russian");
+	//SetConsoleOutputCP(1251);
+	//SetConsoleCP(1251);
+#endif
 
 	struct resistarray resist;
 	resist.n = -1;
@@ -39,16 +49,16 @@ int main(int argc, char *argv[]) {
 		input_line(string_command);
 		int count = split(string_command, ' ', &split_command);
 
-			// Enter
+		// Enter
 		if (strcmp(string_command, "\0") == 0) {
 			continue;
 		}
-			// help
+		// help
 		else if (strcmp(split_command[0], commands[0].name) == 0) {
 			if (count == 1) help_void();
 			else help(split_command[1]);
 		}
-			// setsize
+		// setsize
 		else if (strcmp(split_command[0], commands[1].name) == 0) {
 			if (count == 1) {
 				printf("%s\n", errormessages.value_not_entered[lang]);
@@ -62,7 +72,7 @@ int main(int argc, char *argv[]) {
 			}
 			setsize(&resist, size);
 		}
-			// fillmanual
+		// fillmanual
 		else if (strcmp(split_command[0], commands[2].name) == 0) {
 			if (!resist.isSized) {
 				printf("%s\n", errormessages.not_sized[lang]);
@@ -70,7 +80,8 @@ int main(int argc, char *argv[]) {
 			}
 			if (count == 1) {
 				fillmanual_void(&resist);
-			} else {
+			}
+			else {
 				int n1 = count - 1;
 				if (n1 > resist.n) {
 					printf("%s\n", errormessages.too_much[lang]);
@@ -83,7 +94,7 @@ int main(int argc, char *argv[]) {
 				fillmanual(&resist, split_command, 1);
 			}
 		}
-			// fillrandom
+		// fillrandom
 		else if (strcmp(split_command[0], commands[3].name) == 0) {
 			if (!resist.isSized) {
 				printf("%s\n", errormessages.not_sized[lang]);
@@ -106,7 +117,7 @@ int main(int argc, char *argv[]) {
 			}
 			fillrandom(&resist, min, max);
 		}
-			// changevalue
+		// changevalue
 		else if (strcmp(split_command[0], commands[4].name) == 0) {
 			if (!resist.isFilled || !resist.isSized) {
 				printf("%s\n", errormessages.not_sized_or_not_filled[lang]);
@@ -130,7 +141,7 @@ int main(int argc, char *argv[]) {
 			}
 			changevalue(&resist, index, val);
 		}
-			// calculateresist
+		// calculateresist
 		else if (strcmp(split_command[0], commands[5].name) == 0) {
 			if (!resist.isFilled || !resist.isSized) {
 				printf("%s\n", errormessages.not_sized_or_not_filled[lang]);
@@ -141,7 +152,7 @@ int main(int argc, char *argv[]) {
 			}
 			printresist(&resist);
 		}
-			// print
+		// print
 		else if (strcmp(split_command[0], commands[6].name) == 0) {
 			if (!resist.isFilled || !resist.isSized) {
 				printf("%s\n", errormessages.not_sized_or_not_filled[lang]);
@@ -149,15 +160,16 @@ int main(int argc, char *argv[]) {
 			}
 			print(&resist);
 		}
-			// switchlang
+		// switchlang
 		else if (strcmp(split_command[0], commands[7].name) == 0) {
 			lang = 1 - lang;
 		}
-			// exit
+		// exit
 		else if (strcmp(split_command[0], commands[8].name) == 0) {
 			free(resist.values);
 			return 0;
-		} else {
+		}
+		else {
 			printf("%s\n", errormessages.cmd_not_found[lang]);
 		}
 
