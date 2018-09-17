@@ -28,7 +28,7 @@ bool checkerResist(double n) {
 	return true;
 }
 
-// Р§СѓР¶Р°СЏ СЂРµР°Р»РёР·Р°С†РёСЏ
+// Чужая реализация
 int split(const char *str, char c, char ***arr) {
 	int count = 1;
 	int token_len = 1;

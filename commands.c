@@ -9,40 +9,40 @@
 #include "input.h"
 
 struct command commands[COMMANDS_COUNT] = {
-		{"help",            {"Р’С‹РІРѕРґ СЃРїСЂР°РІРєРё",                    "Print help"},
-				{"Р‘РµР· Р°СЂРіСѓРјРµРЅС‚Р°: Р’С‹РІРѕРґРёС‚ РѕРїРёСЃР°РЅРёРµ РІСЃРµС… РєРѕРјР°РЅРґ\nРЎ Р°СЂРіСѓРјРµРЅС‚РѕРј (help <РёРјСЏ_РєРѕРјР°РЅРґС‹>): Р’С‹РІРѕРґРёС‚ РїРѕРґСЂРѕР±РЅРѕРµ РѕРїРёСЃР°РЅРёРµ РєРѕРјР°РЅРґС‹\n",
+		{"help",            {"Вывод справки",                    "Print help"},
+				{"Без аргумента: Выводит описание всех команд\nС аргументом (help <имя_команды>): Выводит подробное описание команды\n",
 						"Without argument: Print all commands description\nWith argument (help <cmd_name>): Print detailed info about command\n"}},
 
-		{"setsize",         {"РЈСЃС‚Р°РЅРѕРІРєР° СЂР°Р·РјРµСЂР° РјР°СЃСЃРёРІР°",        "Set array size"},
-				{"РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°, РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ: setsize <array_size>\nР”РѕРїСѓСЃС‚РёРјС‹ С‚РѕР»СЊРєРѕ РЅР°С‚СѓСЂР°Р»СЊРЅС‹Рµ С‡РёСЃР»Р°\n",
+		{"setsize",         {"Установка размера массива",        "Set array size"},
+				{"Устанавливает размер массива, использование: setsize <array_size>\nДопустимы только натуральные числа\n",
 						"Sets size of array, usage: setsize <array_size>\nOnly natural numbers are allowed\n"}},
 
-		{"fillmanual",      {"Р’РІРѕРґ Р·РЅР°С‡РµРЅРёР№ РІСЂСѓС‡РЅСѓСЋ",            "Entering values manually"},
-				{"Р‘РµР· Р°СЂРіСѓРјРµРЅС‚Р°: РќР°С‡РёРЅР°РµС‚ СЃС‡РёС‚С‹РІР°РЅРёРµ Р·РЅР°С‡РµРЅРёР№ РјР°СЃСЃРёРІР°, РєР°Р¶РґС‹Р№ СЃС‡РёС‚С‹РІР°РµС‚СЃСЏ СЃ РЅРѕРІРѕР№ СЃС‚СЂРѕРєРё С‡РµСЂРµР· enter\nРЎ Р°СЂРіСѓРјРµРЅС‚РѕРј (fillmanual <Р·РЅР°С‡РµРЅРёСЏ_С‡РµСЂРµР·_РїСЂРѕР±РµР»>): РЎС‡РёС‚С‹РІР°РµС‚ Р·РЅР°С‡РµРЅРёСЏ РјР°СЃСЃРёРІР° РёСЃРїРѕР»СЊР·СѓСЏ РїСЂРѕР±РµР» РєР°Рє СЂР°Р·РґРµР»РёС‚РµР»СЊ\nР”РѕРїСѓСЃС‚РёРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ: Р’РµС‰РµСЃС‚РІРµРЅРЅРѕРµ С‡РёСЃР»Рѕ Р±РѕР»СЊС€РµРµ РЅСѓР»СЏ\n",
+		{"fillmanual",      {"Ввод значений вручную",            "Entering values manually"},
+				{"Без аргумента: Начинает считывание значений массива, каждый считывается с новой строки через enter\nС аргументом (fillmanual <значения_через_пробел>): Считывает значения массива используя пробел как разделитель\nДопустимые значения: Вещественное число большее нуля\n",
 						"Without argument: Begins reading the values of the array, each read from a new line via enter\nWith argument (help <cmd_name>): Reads the values of the array using a space as a separator\nValid values: Real number greater than zero\n"}},
 
-		{"fillrandom",      {"Р—Р°РїРѕР»РЅРµРЅРёРµ СЃР»СѓС‡Р°Р№РЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё", "Filling with random values"},
-				{"Р—Р°РїРѕР»РЅСЏРµС‚ СЃР»СѓС‡Р°Р№РЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё РѕС‚ min РґРѕ max, РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ: fillrandom <min> <max>\nmin Рё max - РЅР°С‚СѓСЂР°Р»СЊРЅС‹Рµ С‡РёСЃР»Р°, min < max\n",
+		{"fillrandom",      {"Заполнение случайными значениями", "Filling with random values"},
+				{"Заполняет случайными значениями от min до max, использование: fillrandom <min> <max>\nmin и max - натуральные числа, min < max\n",
 						"Fills with random values from min to max, usage: fillrandom <min> <max>\nmin and max are natural numbers, min < max\n"}},
 
-		{"changevalue",     {"РР·РјРµРЅРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ",                "Change Value"},
-				{"РњРµРЅСЏРµС‚ Р·РЅР°С‡РµРЅРёРµ, РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ: changevalue <РЅРѕРјРµСЂ> <Р·РЅР°С‡РµРЅРёРµ>\nРќРѕРјРµСЂ - РЅР°С‚СѓСЂР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ, Р·РЅР°С‡РµРЅРёРµ - РІРµС‰РµСЃС‚РІРµРЅРЅРѕРµ Р±РѕР»СЊС€Рµ РЅСѓР»СЏ\n",
+		{"changevalue",     {"Изменить значение",                "Change Value"},
+				{"Меняет значение, использование: changevalue <номер> <значение>\nНомер - натуральное число, значение - вещественное больше нуля\n",
 						"Changes the value, usage: changevalue <index> <value>\nIndex - natural number, value - real number"}},
 
-		{"calculateresist", {"Р’С‹С‡РёСЃР»РёС‚СЊ СЃРѕРїСЂРѕС‚РёРІР»РµРЅРёРµ",          "Calculate resistance"},
-				{"Р’С‹С‡РёСЃР»СЏРµС‚ СЃРѕРїСЂРѕС‚РёРІР»РµРЅРёРµ РґР»СЏ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕРіРѕ Рё РїР°СЂР°Р»Р»РµР»СЊРЅРѕРіРѕ СЃРѕРµРґРµРЅРµРЅРёСЏ, Р·РЅР°С‡РµРЅРёСЏ РјР°СЃСЃРёРІР° РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІРІРµРґРµРЅС‹\n",
+		{"calculateresist", {"Вычислить сопротивление",          "Calculate resistance"},
+				{"Вычисляет сопротивление для последовательного и параллельного соеденения, значения массива должны быть введены\n",
 						"Calculates the resistance for serial and parallel connections, array values must be entered\n"}},
 
-		{"print",           {"РџРµС‡Р°С‚СЊ РјР°СЃСЃРёРІР°",                   "Print array"},
-				{"Р’С‹РІРѕРґРёС‚ РјР°СЃСЃРёРІ\n",
+		{"print",           {"Печать массива",                   "Print array"},
+				{"Выводит массив\n",
 						"Displays an array\n"}},
 
-		{"switchlang",      {"Switch language to English",       "РџРµСЂРµРєР»СЋС‡РёС‚СЊ СЏР·С‹Рє РЅР° СЂСѓСЃСЃРєРёР№"},
-				{"РџРµСЂРµРєР»СЋС‡Р°РµС‚ СЏР·С‹Рє РЅР° Р°РЅРіР»РёР№СЃРєРёР№\n",
+		{"switchlang",      {"Switch language to English",       "Переключить язык на русский"},
+				{"Переключает язык на английский\n",
 						"Switches language to Russian\n"}},
 
-		{"exit",            {"Р’С‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹",               "Exiting the program"},
-				{"Р—Р°РІРµСЂС€Р°РµС‚ РїСЂРѕРіСЂР°РјРјСѓ\n",
+		{"exit",            {"Выход из программы",               "Exiting the program"},
+				{"Завершает программу\n",
 						"Ends the program\n"}}
 };
 
@@ -89,7 +89,7 @@ void fillmanual(struct resistarray *resist, char **arrstr, int firstindex) {
 void fillmanual_void(struct resistarray *resist) {
 	char output[MAX_STRING_LENGTH];
 	for (int i = 0; i < resist->n; i++) {
-		//if (lang == LANGUAGE_RUSSIAN) sprintf(output, "Р’РІРµРґРёС‚Рµ СЌР»РµРјРµРЅС‚ в„–%d: ", i + 1);
+		//if (lang == LANGUAGE_RUSSIAN) sprintf(output, "Введите элемент №%d: ", i + 1);
 		//else sprintf(output, "Enter element #%d: ", i + 1);
 		sprintf(output, "%s%d: ", messages.enter_value_number[lang], i + 1);
 		resist->values[i] = cycle_input_double(output, checkerResist);

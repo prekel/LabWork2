@@ -1,19 +1,19 @@
 #include "messages.h"
 
 struct errmessages errormessages = {
-		{"РљРѕРјР°РЅРґР° РЅРµ РЅР°Р№РґРµРЅР°",             "Command not found"},
-		{"Р’РІРµРґРµРЅРѕ РЅРµРІРµСЂРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ(-РёСЏ)", "Invalid value(-s) entered"},
-		{"Р’РІРµРґРµРЅРѕ РЅРµРІРµСЂРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ",      "Invalid value entered"},
-		{"Р—РЅР°С‡РµРЅРёРµ РЅРµ РІРІРµРґРµРЅРѕ",            "Value not entered"},
-		{"Р’РІРµРґРµРЅРѕ СЃР»РёС€РєРѕРј РјРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёР№", "Too many values entered"},
-		{"Р’РІРµРґРµРЅРѕ СЃР»РёС€РєРѕРј РјР°Р»Рѕ Р·РЅР°С‡РµРЅРёР№",  "Too few values entered"},
-		{"Р—РЅР°С‡РµРЅРёСЏ РјР°СЃСЃРёРІР° РЅРµ РѕРїСЂРµРґРµР»РµРЅС‹", "Values not entered"},
-		{"РќРµ СѓРєР°Р·Р°РЅ СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°", "No array size specified"}
+		{"Команда не найдена",             "Command not found"},
+		{"Введено неверное значение(-ия)", "Invalid value(-s) entered"},
+		{"Введено неверное значение",      "Invalid value entered"},
+		{"Значение не введено",            "Value not entered"},
+		{"Введено слишком много значений", "Too many values entered"},
+		{"Введено слишком мало значений",  "Too few values entered"},
+		{"Значения массива не определены", "Values not entered"},
+		{"Не указан размер массива", "No array size specified"}
 };
 
 struct mssages messages = {
-		{"Р’РІРµРґРёС‚Рµ СЌР»РµРјРµРЅС‚ в„–",                                    "Enter element #"},
-		{"РћР±С‰РµРµ СЃРѕРїСЂРѕС‚РёРІР»РµРЅРёРµ РїСЂРё РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕРј СЃРѕРµРґРёРЅРµРЅРёРё:", "Total resistance with serial connection:  "},
-		{"РћР±С‰РµРµ СЃРѕРїСЂРѕС‚РёРІР»РµРЅРёРµ РїСЂРё РїР°СЂР°Р»Р»РµР»СЊРЅРѕРј СЃРѕРµРґРёРЅРµРЅРёРё:    ", "Total resistance with parallel connection:"},
-		{"Р’РІРµРґРёС‚Рµ \"help\" РґР»СЏ СЃРїСЂР°РІРєРё, \"help <РёРјСЏ_РєРѕРјР°РЅРґС‹>\" РґР»СЏ РїРѕРґСЂРѕР±РЅРѕРіРѕ РѕРїРёСЃР°РЅРёСЏ РєРѕРјР°РЅРґС‹\n", "Enter \"help\" for help, \"help <cmd_name>\" for detailed info about command\n"},
+		{"Введите элемент №",                                    "Enter element #"},
+		{"Общее сопротивление при последовательном соединении:", "Total resistance with serial connection:  "},
+		{"Общее сопротивление при параллельном соединении:    ", "Total resistance with parallel connection:"},
+		{"Введите \"help\" для справки, \"help <имя_команды>\" для подробного описания команды\n", "Enter \"help\" for help, \"help <cmd_name>\" for detailed info about command\n"},
 };
