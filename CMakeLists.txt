@@ -10,6 +10,8 @@ set(HEADERS commands.h options.h messages.h input.h)
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
 add_subdirectory(LabWork2.Lib)
-add_subdirectory(LabWork2.Lib.Tests)
+if (UNIX)
+	add_subdirectory(LabWork2.Lib.Tests)
+endif (UNIX)
 
 target_link_libraries(${PROJECT_NAME} LabWork2.Lib)
