@@ -148,24 +148,13 @@ int main(int argc, char *argv[]) {
 		}
 			// exit
 		else if (strcmp(split_command[0], commands[8].name) == 0) {
+			free(resist.values);
 			return 0;
 		} else {
 			printf("%s\n", errormessages.cmd_not_found[lang]);
 		}
 	}
-//	n = cycle_input_int("N: ", checkerN);
-//
-//	double *resist = (double *) malloc(n * sizeof(double));
-//	for (int i = 0; i < n; i++) {
-//		sprintf(output, "R n%d: ", i + 1);
-//		resist[i] = cycle_input_double(output, checkerResist);
-//	}
-//
-//	printf("R serial:   %15.6lf\n", serial_resist(n, resist));
-//	printf("R parallel: %15.6lf\n", parallel_resist(n, resist));
-//	fflush(stdout);
-//	free(resist);
-	//}
 
-	return 0;
+	//free(resist.values);
+	//return 0;
 }
