@@ -17,6 +17,13 @@ int main(int argc, char *argv[]) {
 	if (argc == 1 && strcmp(argv[0], "-en") == 0) lang = LANGUAGE_ENGLISH;
 
 	struct resistarray resist;
+	resist.n = -1;
+	resist.isSized = false;
+	resist.isCalculated = false;
+	resist.isFilled = false;
+	resist.parallel = -1;
+	resist.serial = -1;
+	resist.values = NULL;
 
 	int n;
 	char output[MAX_STRING_LENGTH];
@@ -157,6 +164,7 @@ int main(int argc, char *argv[]) {
 		for (int j = 0; j < count; j++) {
 			free(split_command[j]);
 		}
+		free(split_command);
 	}
 
 	//free(resist.values);
