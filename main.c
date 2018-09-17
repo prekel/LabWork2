@@ -24,8 +24,8 @@ int main(int argc, char *argv[]) {
 	char string_command[MAX_STRING_LENGTH];
 	char **split_command;
 
-	printf("Введите \"help\" для справки, \"help <имя_команды>\" для подробного описания команды\n");
-	printf("Enter \"help\" for help, \"help <сmd_name>\" for detailed info about command\n");
+	printf("%s", messages.start[LANGUAGE_RUSSIAN]);
+	printf("%s", messages.start[LANGUAGE_ENGLISH]);
 
 	while (true) {
 		printf("> ");
