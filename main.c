@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 	if (argc == 1 && strcmp(argv[0], "-en") == 0) lang = LANGUAGE_ENGLISH;
 
 	int n;
-	char output[100];
+	char output[MAX_STRING_LENGTH];
 
 	char string_command[MAX_STRING_LENGTH];
 	char **split_command;
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 		input_line(string_command);
 		int count = split(string_command, ' ', &split_command);
 
-		// Enter
+			// Enter
 		if (strcmp(string_command, "\0") == 0) {
 			continue;
 		}
@@ -152,6 +152,10 @@ int main(int argc, char *argv[]) {
 			return 0;
 		} else {
 			printf("%s\n", errormessages.cmd_not_found[lang]);
+		}
+
+		for (int j = 0; j < count; j++) {
+			free(split_command[j]);
 		}
 	}
 
