@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #ifdef _WIN32
 //#include <locale.h>
-//#include <windows.h>
+#include <windows.h>
 #endif
 #include "../LabWork2.Lib/functions.h"
 #include "options.h"
@@ -22,8 +22,8 @@ int main(int argc, char *argv[]) {
 #ifdef _WIN32
 	//setlocale(0, "");
 	//setlocale(LC_ALL, "Russian");
-	//SetConsoleOutputCP(1251);
-	//SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	SetConsoleCP(1251);
 #endif
 
 	struct resistarray resist;
