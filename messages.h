@@ -16,6 +16,7 @@ struct mssages {
 	char *enter_value_number[2];
 	char *parallel_resist[2];
 	char *serial_resist[2];
+	char *start[2];
 };
 struct mssages messages;
 

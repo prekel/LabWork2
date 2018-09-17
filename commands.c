@@ -66,9 +66,13 @@ void help(char *cmd) {
 }
 
 void setsize(struct resistarray *resist, int size) {
+	if (resist->isSized) {
+		free(resist->values);
+	}
 	resist->n = size;
 	resist->values = (double *) malloc(size * sizeof(double));
 	resist->isSized = true;
+	resist->isFilled = false;
 	resist->isCalculated = false;
 }
 

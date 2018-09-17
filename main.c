@@ -19,20 +19,20 @@ int main(int argc, char *argv[]) {
 	if (argc == 1 && strcmp(argv[0], "-en") == 0) lang = LANGUAGE_ENGLISH;
 
 	int n;
-	char output[100];
+	char output[MAX_STRING_LENGTH];
 
 	char string_command[MAX_STRING_LENGTH];
 	char **split_command;
 
-	printf("Введите \"help\" для справки, \"help <имя_команды>\" для подробного описания команды\n");
-	printf("Enter \"help\" for help, \"help <сmd_name>\" for detailed info about command\n");
+	printf("%s", messages.start[LANGUAGE_RUSSIAN]);
+	printf("%s", messages.start[LANGUAGE_ENGLISH]);
 
 	while (true) {
 		printf("> ");
 		input_line(string_command);
 		int count = split(string_command, ' ', &split_command);
 
-		// Enter
+			// Enter
 		if (strcmp(string_command, "\0") == 0) {
 			continue;
 		}
@@ -148,24 +148,17 @@ int main(int argc, char *argv[]) {
 		}
 			// exit
 		else if (strcmp(split_command[0], commands[8].name) == 0) {
+			free(resist.values);
 			return 0;
 		} else {
 			printf("%s\n", errormessages.cmd_not_found[lang]);
 		}
-	}
-//	n = cycle_input_int("N: ", checkerN);
-//
-//	double *resist = (double *) malloc(n * sizeof(double));
-//	for (int i = 0; i < n; i++) {
-//		sprintf(output, "R n%d: ", i + 1);
-//		resist[i] = cycle_input_double(output, checkerResist);
-//	}
-//
-//	printf("R serial:   %15.6lf\n", serial_resist(n, resist));
-//	printf("R parallel: %15.6lf\n", parallel_resist(n, resist));
-//	fflush(stdout);
-//	free(resist);
-	//}
 
-	return 0;
+		for (int j = 0; j < count; j++) {
+			free(split_command[j]);
+		}
+	}
+
+	//free(resist.values);
+	//return 0;
 }
