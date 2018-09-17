@@ -12,11 +12,11 @@
 
 //int lang = 0;
 
-struct resistarray resist;
-
 int main(int argc, char *argv[]) {
 	srand(time(NULL));
 	if (argc == 1 && strcmp(argv[0], "-en") == 0) lang = LANGUAGE_ENGLISH;
+
+	struct resistarray resist;
 
 	int n;
 	char output[MAX_STRING_LENGTH];
