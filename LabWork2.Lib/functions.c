@@ -78,6 +78,7 @@ int split(const char *str, char c, char ***arr) {
 		}
 		p++;
 	}
+	*t = '\0';
 
 	return count;
 }

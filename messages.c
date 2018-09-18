@@ -15,5 +15,5 @@ struct mssages messages = {
 		{"Введите элемент №",                                    "Enter element #"},
 		{"Общее сопротивление при последовательном соединении:", "Total resistance with serial connection:  "},
 		{"Общее сопротивление при параллельном соединении:    ", "Total resistance with parallel connection:"},
-		{"Введите \"help\" для справки, \"help <имя_команды>\" для подробного описания команды\n", "Enter \"help\" for help, \"help <сmd_name>\" for detailed info about command\n"},
+		{"Введите \"help\" для справки, \"help <имя_команды>\" для подробного описания команды\n", "Enter \"help\" for help, \"help <cmd_name>\" for detailed info about command\n"},
 };
