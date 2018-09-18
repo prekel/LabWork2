@@ -61,7 +61,7 @@ void help(char *cmd) {
 		}
 	}
 	if (find == false) {
-		printf("%s", errormessages.cmd_not_found[lang]);
+		printf("%s\n", errormessages.cmd_not_found[lang]);
 	}
 }
 
